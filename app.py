@@ -1,7 +1,7 @@
 from p5 import *
 from classes.clases import *
 from patron.Builders import Builder
-
+import random
 cuadrado = None
 elipse = None
 cuadrado3 = None
@@ -19,11 +19,21 @@ def setup():
     global elipse3
     global MAX_WIDTH
     global MAX_HEIGHT
+
     size(MAX_WIDTH, MAX_HEIGHT)
-    
-    figuras.append(crearFigura(0, 50,50))
-    figuras.append(crearFigura(1, 100,200))
-    
+
+    for i in range(10):
+
+        tipo = random.randint(0, 1)
+
+        x = random.randint(50, MAX_WIDTH - 50)
+        y = random.randint(50, MAX_HEIGHT - 50)
+
+        figuras.append(
+            crearFigura(tipo, x, y)
+        )
+
+   
 
 def draw():
     background(220)
