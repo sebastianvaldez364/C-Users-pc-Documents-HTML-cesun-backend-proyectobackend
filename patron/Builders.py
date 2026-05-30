@@ -39,20 +39,8 @@ class Builder:
             'relleno':self._color_relleno
         }
         if self._esElipse == False:
-            # return Cuadrado(width=50, height=50,
-            #                 borde_grosor=self._borde_grosor, 
-            #                 borde_color=self._borde_color,
-            #                 x=50, y=50, 
-            #                 relleno=self._color_relleno )
-            # return Cuadrado(width=variable['width'], height=variable['height'],
-            #                 borde_grosor=variable['borde_grosor'], 
-            #                 borde_color=variable['borde_color'],
-            #                 x=variable['x'], y=variable['y'], 
-            #                 relleno=variable['relleno'] )
+         
             return Cuadrado(**variable)
         else:
             return Elipse(**variable )
-    # borde_grosor, borde_color, 
-    #              width, height, 
-    #              x, y, 
-    #              relleno
+ 

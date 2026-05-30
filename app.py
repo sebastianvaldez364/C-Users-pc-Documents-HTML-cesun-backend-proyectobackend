@@ -2,6 +2,7 @@ from p5 import *
 from classes.clases import *
 from patron.Builders import Builder
 import random
+
 cuadrado = None
 elipse = None
 cuadrado3 = None
@@ -10,6 +11,14 @@ figuras = []
 
 MAX_WIDTH = 800
 MAX_HEIGHT = 700
+
+
+def colorRandom():
+    return "#{:02X}{:02X}{:02X}".format(
+        random.randint(0, 255),
+        random.randint(0, 255),
+        random.randint(0, 255)
+    )
 
 
 def setup():
@@ -33,31 +42,40 @@ def setup():
             crearFigura(tipo, x, y)
         )
 
-   
 
 def draw():
     background(220)
-    
+
     for figura in figuras:
         interactuarFig(figura)
-    
-    
-def interactuarFig(figura:Figura):
+
+
+def interactuarFig(figura: Figura):
     figura.dibujar()
     figura.desplazar_rebotar(max_y=MAX_HEIGHT)
 
-def crearFigura(tipo: int, x:float, y:float):
-    if tipo ==0:
-        return Builder().configBorde(2,"#000000").configColor("#463932").configDimension(50,50).configPosicion(x,y).build()
-    else:
-        return Builder().configBorde(4,"#000000").configColor("#12B85D").configDimension(50,50).configPosicion(x,y).esElipse().build()
-# def interactuar(cuadrado:Cuadrado):
-#     cuadrado.dibujar()
-#     cuadrado.desplazar_rebotar(max_y=MAX_HEIGHT)
-    
 
-# def interactuarCirculo(elipse:Elipse):
-#     elipse.dibujar()
-#     elipse.desplazar_rebotar(MAX_WIDTH, MAX_HEIGHT)
+def crearFigura(tipo: int, x: float, y: float):
+    if tipo == 0:
+        return Builder().configBorde(
+            2, "#000000"
+        ).configColor(
+            colorRandom()
+        ).configDimension(
+            50, 50
+        ).configPosicion(
+            x, y
+        ).build()
+    else:
+        return Builder().configBorde(
+            4, "#000000"
+        ).configColor(
+            colorRandom()
+        ).configDimension(
+            50, 50
+        ).configPosicion(
+            x, y
+        ).esElipse().build()
+
 
 run()
