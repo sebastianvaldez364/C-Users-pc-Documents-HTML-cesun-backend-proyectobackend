@@ -1,5 +1,5 @@
-#classes/clases.py
 from p5 import *
+
 
 class Borde:
     def __init__(self, grosor, color):
@@ -27,25 +27,30 @@ class Posicion:
     def __str__(self):
         return f"x = {self.coord_x}, y = {self.coord_y}"
 
-#La clase Cuadrado, Cambió a clase Figura
+
 class Figura:
-    def __init__(self, 
-                 borde_grosor, borde_color, 
-                 width, height, 
-                 x, y, 
-                 relleno, borde:Borde=None):
+    def __init__(
+        self,
+        borde_grosor,
+        borde_color,
+        width,
+        height,
+        x,
+        y,
+        relleno,
+        borde: Borde = None
+    ):
 
         if borde is None:
             self.borde = Borde(borde_grosor, borde_color)
         else:
             self.borde = borde
-            
+
         self.dimension = Dimension(width, height)
         self.posicion = Posicion(x, y)
 
         self.color_relleno = relleno
 
-        # velocidad en x y y
         self.vel_x = 3
         self.vel_y = 2
 
@@ -72,28 +77,35 @@ class Figura:
             self.dimension.height
         )
 
-    # def desplazar_rebotar(self, max_x=600, max_y=600):
-    def desplazar_rebotar(self, max_x:int=600, max_y:int=600):
+    def desplazar_rebotar(
+        self,
+        max_x: int = 600,
+        max_y: int = 600
+    ):
 
-        #para mover en x
         self.posicion.coord_x += self.vel_x
-
-        # para mover en y
         self.posicion.coord_y += self.vel_y
 
-        # rebote horizontal
-        #if self.posicion.coord_x <= 0 or self.posicion.coord_x + self.dimension.width >= 600:
-        if self.posicion.coord_x <= 0 or self.posicion.coord_x + self.dimension.width >= max_x:
-
+        if self.posicion.coord_x <= 0:
+            self.posicion.coord_x = 0
             self.vel_x *= -1
 
-        # rebote vertical
-        if self.posicion.coord_y <= 0 or self.posicion.coord_y + self.dimension.height >= max_y:
+        elif self.posicion.coord_x + self.dimension.width >= max_x:
+            self.posicion.coord_x = max_x - self.dimension.width
+            self.vel_x *= -1
 
+        if self.posicion.coord_y <= 0:
+            self.posicion.coord_y = 0
             self.vel_y *= -1
-            
+
+        elif self.posicion.coord_y + self.dimension.height >= max_y:
+            self.posicion.coord_y = max_y - self.dimension.height
+            self.vel_y *= -1
+
+
 class Cuadrado(Figura):
     ...
+
 
 class Elipse(Figura):
     def dibujar(self):
@@ -109,9 +121,18 @@ class Elipse(Figura):
             self.dimension.width,
             self.dimension.height
         )
-    
+
+
 if __name__ == "__main__":
 
-    cuadrado = Cuadrado(2, "#000000", 50, 50, 10, 10, "#463932")
+    cuadrado = Cuadrado(
+        2,
+        "#000000",
+        50,
+        50,
+        10,
+        10,
+        "#463932"
+    )
 
     print(cuadrado)

@@ -52,7 +52,7 @@ def draw():
 
 def interactuarFig(figura: Figura):
     figura.dibujar()
-    figura.desplazar_rebotar(max_y=MAX_HEIGHT)
+    figura.desplazar_rebotar(MAX_WIDTH, MAX_HEIGHT)
 
 
 def crearFigura(tipo: int, x: float, y: float):
